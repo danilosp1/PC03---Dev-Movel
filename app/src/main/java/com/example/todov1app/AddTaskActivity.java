@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.RadioButton;
 
 import com.example.todov1app.databinding.ActivityAddTaskBinding;
 
@@ -20,7 +21,11 @@ public class AddTaskActivity extends AppCompatActivity {
         binding.addNewButton.setOnClickListener(view -> {
             String name = binding.taskNameEditText.getText().toString();
             String desc = binding.taskDescEditText.getText().toString();
-            Task task = new Task(name, desc);
+            int selectedPriority = binding.radioPriority.getCheckedRadioButtonId();
+            RadioButton button = findViewById(selectedPriority);
+
+            String priority = button.getText().toString();
+            Task task = new Task(name, desc, priority);
             Intent i = new Intent();
             i.putExtra("taskAdded", task);
             setResult(RESULT_OK, i);

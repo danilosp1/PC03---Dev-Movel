@@ -3,11 +3,12 @@ package com.example.todov1app;
 import java.io.Serializable;
 
 public class Task implements Serializable {
-    String name, description;
+    String name, description, priority;
 
-    public Task(String name, String description) {
+    public Task(String name, String description, String priority) {
         this.name = name;
         this.description = description;
+        this.priority = priority;
     }
 
     public String getName() {
@@ -26,8 +27,12 @@ public class Task implements Serializable {
         this.description = description;
     }
 
+    public String getPriority() { return priority; }
+
+    public void setPriority(String priority) { this.priority = priority; }
+
     @Override
     public String toString() {
-        return getName();
+        return getName() + " - " + getPriority();
     }
 }
